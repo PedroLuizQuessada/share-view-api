@@ -5,6 +5,9 @@ import com.example.shareview.dtos.responses.CourseResponse;
 import com.example.shareview.entities.Course;
 
 public class CourseMapper {
+
+    private CourseMapper() {}
+
     public static CourseDto toDto(Course course) {
         return new CourseDto(course.getId(), course.getName(), course.getDescription());
     }

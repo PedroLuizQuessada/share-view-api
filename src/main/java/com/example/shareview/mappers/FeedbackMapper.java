@@ -6,8 +6,9 @@ import com.example.shareview.entities.Feedback;
 
 import java.util.Objects;
 
-//TODO construtor privado para mappers
 public class FeedbackMapper {
+
+    private FeedbackMapper() {}
 
     public static FeedbackDto toDto(Feedback feedback) {
         return new FeedbackDto(

@@ -8,6 +8,9 @@ import com.example.shareview.entities.User;
 import java.util.Objects;
 
 public class ClassMapper {
+
+    private ClassMapper() {}
+
     public static ClassDto toDto(Class clazz) {
         return new ClassDto(clazz.getId(),
                 Objects.isNull(clazz.getCourse()) ? null : CourseMapper.toDto(clazz.getCourse()),

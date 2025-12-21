@@ -5,6 +5,9 @@ import com.example.shareview.dtos.responses.UserResponse;
 import com.example.shareview.entities.User;
 
 public class UserMapper {
+
+    private UserMapper() {}
+
     public static UserDto toDto(User user) {
         return new UserDto(user.getId(), user.getEmail(), user.getPassword(), user.getUserType());
     }
