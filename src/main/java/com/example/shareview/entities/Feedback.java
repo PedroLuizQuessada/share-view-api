@@ -7,12 +7,13 @@ import java.util.Objects;
 
 @Getter
 public class Feedback {
+    private final Long id;
     private final User student;
     private final Class clazz;
     private final Integer rating;
     private final String description;
 
-    public Feedback(User student, Class clazz, Integer rating, String description) {
+    public Feedback(Long id, User student, Class clazz, Integer rating, String description) {
         String message = "";
 
         try {
@@ -39,6 +40,7 @@ public class Feedback {
         if (!message.isEmpty())
             throw new BadArgumentException(message);
 
+        this.id = id;
         this.student = student;
         this.clazz = clazz;
         this.rating = rating;

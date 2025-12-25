@@ -33,7 +33,7 @@ public class CreateFeedbackUseCase {
         if (clazz.getStudentsCopy().stream().noneMatch(student -> student.getId().equals(user.getId())))
             throw new BadRequestException("Aluno só podem criar feedbacks para classes das quais fizeram parte.");
 
-        Feedback feedback = new Feedback(user, clazz, createFeedbackRequest.rating(), createFeedbackRequest.description());
+        Feedback feedback = new Feedback(null, user, clazz, createFeedbackRequest.rating(), createFeedbackRequest.description());
         return feedbackGateway.createUser(FeedbackMapper.toDto(feedback));
     }
 }

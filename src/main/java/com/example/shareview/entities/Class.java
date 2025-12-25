@@ -2,7 +2,6 @@ package com.example.shareview.entities;
 
 import com.example.shareview.enums.UserType;
 import com.example.shareview.exceptions.BadArgumentException;
-import com.example.shareview.exceptions.UserNotFoundException;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -67,19 +66,24 @@ public class Class {
                 .collect(java.util.stream.Collectors.toList());
     }
 
-    public void addTeacher(User teacher) {
-        validateTeacher(teacher);
+    public void addTeacher(User addTeacher) {
+        validateTeacher(addTeacher);
         if (Objects.isNull(this.teachers))
             this.teachers = new ArrayList<>();
-        this.teachers.add(teacher);
+
+        if (teachers.stream().anyMatch(teacher -> teacher.getId().equals(addTeacher.getId())))
+            throw new BadArgumentException("Professor já consta na classe.");
+
+        this.teachers.add(addTeacher);
     }
 
-    public void removeTeacher(User teacher) {
-        validateTeacher(teacher);
-        if (!this.teachers.contains(teacher)) {
-            throw new UserNotFoundException(teacher.getEmail());
-        }
-        this.teachers.remove(teacher);
+    public void removeTeacher(User removeTeacher) {
+        validateTeacher(removeTeacher);
+
+        if (this.teachers.stream().noneMatch(teacher -> teacher.getId().equals(removeTeacher.getId())))
+            throw new BadArgumentException("Professor não consta na classe.");
+
+        this.teachers.remove(removeTeacher);
     }
 
     public List<User> getStudentsCopy() {
@@ -88,19 +92,24 @@ public class Class {
                 .collect(java.util.stream.Collectors.toList());
     }
 
-    public void addStudent(User student) {
-        validateStudent(student);
+    public void addStudent(User addStudent) {
+        validateStudent(addStudent);
         if (Objects.isNull(this.students))
             this.students = new ArrayList<>();
-        this.students.add(student);
+
+        if (students.stream().anyMatch(student -> student.getId().equals(addStudent.getId())))
+            throw new BadArgumentException("Aluno já consta na classe.");
+
+        this.students.add(addStudent);
     }
 
-    public void removeStudent(User student) {
-        validateStudent(student);
-        if (!this.students.contains(student)) {
-            throw new UserNotFoundException(student.getEmail());
-        }
-        this.students.remove(student);
+    public void removeStudent(User removeStudent) {
+        validateStudent(removeStudent);
+
+        if (this.students.stream().noneMatch(student -> student.getId().equals(removeStudent.getId())))
+            throw new BadArgumentException("Aluno não consta na classe.");
+
+        this.students.remove(removeStudent);
     }
 
     private void validateCourse(Course course) {
