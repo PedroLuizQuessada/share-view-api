@@ -1,7 +1,7 @@
 package com.example.shareview.gateways;
 
 import com.example.shareview.datasources.TokenDataSource;
-import com.example.shareview.enums.UserType;
+import enums.UserType;
 
 public class TokenGateway {
 

@@ -1,9 +1,9 @@
 package com.example.shareview.gateways;
 
 import com.example.shareview.datasources.FeedbackDataSource;
-import com.example.shareview.dtos.FeedbackDto;
 import com.example.shareview.entities.Feedback;
 import com.example.shareview.mappers.FeedbackMapper;
+import dtos.FeedbackDto;
 
 public class FeedbackGateway {
 

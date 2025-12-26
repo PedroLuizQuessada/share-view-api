@@ -1,7 +1,7 @@
 package com.example.shareview.mappers;
 
-import com.example.shareview.dtos.responses.LoginResponse;
 import com.example.shareview.entities.User;
+import dtos.responses.LoginResponse;
 
 public class LoginMapper {
 

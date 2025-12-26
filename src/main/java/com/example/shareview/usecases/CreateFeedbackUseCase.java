@@ -1,6 +1,5 @@
 package com.example.shareview.usecases;
 
-import com.example.shareview.dtos.requests.CreateFeedbackRequest;
 import com.example.shareview.entities.Class;
 import com.example.shareview.entities.Feedback;
 import com.example.shareview.entities.User;
@@ -10,6 +9,7 @@ import com.example.shareview.gateways.FeedbackGateway;
 import com.example.shareview.gateways.TokenGateway;
 import com.example.shareview.gateways.UserGateway;
 import com.example.shareview.mappers.FeedbackMapper;
+import dtos.requests.CreateFeedbackRequest;
 
 public class CreateFeedbackUseCase {
 

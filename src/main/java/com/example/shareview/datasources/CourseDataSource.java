@@ -1,6 +1,6 @@
 package com.example.shareview.datasources;
 
-import com.example.shareview.dtos.CourseDto;
+import dtos.CourseDto;
 
 import java.util.Optional;
 

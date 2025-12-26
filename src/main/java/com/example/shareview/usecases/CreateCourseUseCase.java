@@ -1,9 +1,9 @@
 package com.example.shareview.usecases;
 
-import com.example.shareview.dtos.requests.CreateCourseRequest;
 import com.example.shareview.entities.Course;
 import com.example.shareview.gateways.CourseGateway;
 import com.example.shareview.mappers.CourseMapper;
+import dtos.requests.CreateCourseRequest;
 
 public class CreateCourseUseCase {
 

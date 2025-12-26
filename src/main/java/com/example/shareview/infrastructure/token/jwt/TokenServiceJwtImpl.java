@@ -1,8 +1,8 @@
 package com.example.shareview.infrastructure.token.jwt;
 
 import com.example.shareview.datasources.TokenDataSource;
-import com.example.shareview.enums.UserType;
 import com.example.shareview.infrastructure.exceptions.InvalidJwtException;
+import enums.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;

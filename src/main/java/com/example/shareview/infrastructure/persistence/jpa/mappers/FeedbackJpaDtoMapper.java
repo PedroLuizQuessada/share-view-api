@@ -1,7 +1,7 @@
 package com.example.shareview.infrastructure.persistence.jpa.mappers;
 
-import com.example.shareview.dtos.FeedbackDto;
 import com.example.shareview.infrastructure.persistence.jpa.models.FeedbackJpa;
+import dtos.FeedbackDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

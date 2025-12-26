@@ -1,7 +1,7 @@
 package com.example.shareview.infrastructure.persistence.jpa.mappers;
 
-import com.example.shareview.dtos.CourseDto;
 import com.example.shareview.infrastructure.persistence.jpa.models.CourseJpa;
+import dtos.CourseDto;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 

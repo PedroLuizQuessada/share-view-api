@@ -1,8 +1,8 @@
 package com.example.shareview.mappers;
 
-import com.example.shareview.dtos.FeedbackDto;
-import com.example.shareview.dtos.responses.FeedbackResponse;
 import com.example.shareview.entities.Feedback;
+import dtos.FeedbackDto;
+import dtos.responses.FeedbackResponse;
 
 import java.util.Objects;
 

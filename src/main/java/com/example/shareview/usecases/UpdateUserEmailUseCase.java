@@ -1,9 +1,9 @@
 package com.example.shareview.usecases;
 
-import com.example.shareview.dtos.requests.UpdateUserEmailRequest;
 import com.example.shareview.entities.User;
 import com.example.shareview.gateways.TokenGateway;
 import com.example.shareview.gateways.UserGateway;
+import dtos.requests.UpdateUserEmailRequest;
 
 import java.util.Objects;
 

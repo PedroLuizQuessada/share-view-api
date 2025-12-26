@@ -1,11 +1,11 @@
 package com.example.shareview.usecases;
 
-import com.example.shareview.dtos.requests.CreateClassRequest;
 import com.example.shareview.entities.Class;
 import com.example.shareview.entities.Course;
 import com.example.shareview.gateways.ClassGateway;
 import com.example.shareview.gateways.CourseGateway;
 import com.example.shareview.mappers.ClassMapper;
+import dtos.requests.CreateClassRequest;
 
 public class CreateClassUseCase {
     private final CourseGateway courseGateway;

@@ -1,9 +1,9 @@
 package com.example.shareview.infrastructure.persistence.jpa.repos;
 
 import com.example.shareview.datasources.UserDataSource;
-import com.example.shareview.dtos.UserDto;
 import com.example.shareview.infrastructure.persistence.jpa.mappers.UserJpaDtoMapper;
 import com.example.shareview.infrastructure.persistence.jpa.models.UserJpa;
+import dtos.UserDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;

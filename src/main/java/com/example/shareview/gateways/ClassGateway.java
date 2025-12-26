@@ -1,12 +1,12 @@
 package com.example.shareview.gateways;
 
 import com.example.shareview.datasources.ClassDataSource;
-import com.example.shareview.dtos.ClassDto;
-import com.example.shareview.dtos.CourseDto;
-import com.example.shareview.dtos.UserDto;
 import com.example.shareview.entities.Class;
 import com.example.shareview.exceptions.ClassNotFoundException;
 import com.example.shareview.mappers.ClassMapper;
+import dtos.ClassDto;
+import dtos.CourseDto;
+import dtos.UserDto;
 
 import java.util.List;
 import java.util.Optional;

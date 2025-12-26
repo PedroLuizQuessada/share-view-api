@@ -1,9 +1,9 @@
 package com.example.shareview.infrastructure.configs;
 
-import com.example.shareview.enums.UserType;
 import com.example.shareview.infrastructure.input.api.security.CustomAccessDeniedHandler;
 import com.example.shareview.infrastructure.input.api.security.CustomAuthenticationEntryPoint;
 import com.example.shareview.infrastructure.input.api.services.UserDetailsServiceImpl;
+import enums.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

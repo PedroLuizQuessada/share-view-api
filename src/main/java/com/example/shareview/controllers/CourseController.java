@@ -2,14 +2,14 @@ package com.example.shareview.controllers;
 
 import com.example.shareview.datasources.ClassDataSource;
 import com.example.shareview.datasources.CourseDataSource;
-import com.example.shareview.dtos.requests.CreateCourseRequest;
-import com.example.shareview.dtos.requests.UpdateCourseRequest;
-import com.example.shareview.dtos.responses.CourseResponse;
 import com.example.shareview.entities.Course;
 import com.example.shareview.gateways.ClassGateway;
 import com.example.shareview.gateways.CourseGateway;
 import com.example.shareview.mappers.CourseMapper;
 import com.example.shareview.usecases.*;
+import dtos.requests.CreateCourseRequest;
+import dtos.requests.UpdateCourseRequest;
+import dtos.responses.CourseResponse;
 
 public class CourseController {
 

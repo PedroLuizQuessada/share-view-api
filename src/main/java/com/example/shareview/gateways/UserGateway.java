@@ -1,10 +1,10 @@
 package com.example.shareview.gateways;
 
 import com.example.shareview.datasources.UserDataSource;
-import com.example.shareview.dtos.UserDto;
 import com.example.shareview.entities.User;
 import com.example.shareview.exceptions.UserNotFoundException;
 import com.example.shareview.mappers.UserMapper;
+import dtos.UserDto;
 
 import java.util.Optional;
 

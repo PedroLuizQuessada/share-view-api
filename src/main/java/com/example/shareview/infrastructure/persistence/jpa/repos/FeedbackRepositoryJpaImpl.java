@@ -1,9 +1,9 @@
 package com.example.shareview.infrastructure.persistence.jpa.repos;
 
 import com.example.shareview.datasources.FeedbackDataSource;
-import com.example.shareview.dtos.FeedbackDto;
 import com.example.shareview.infrastructure.persistence.jpa.mappers.FeedbackJpaDtoMapper;
 import com.example.shareview.infrastructure.persistence.jpa.models.FeedbackJpa;
+import dtos.FeedbackDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;

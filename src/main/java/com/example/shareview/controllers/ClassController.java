@@ -3,14 +3,14 @@ package com.example.shareview.controllers;
 import com.example.shareview.datasources.ClassDataSource;
 import com.example.shareview.datasources.CourseDataSource;
 import com.example.shareview.datasources.UserDataSource;
-import com.example.shareview.dtos.requests.CreateClassRequest;
-import com.example.shareview.dtos.responses.ClassResponse;
 import com.example.shareview.entities.Class;
 import com.example.shareview.gateways.ClassGateway;
 import com.example.shareview.gateways.CourseGateway;
 import com.example.shareview.gateways.UserGateway;
 import com.example.shareview.mappers.ClassMapper;
 import com.example.shareview.usecases.*;
+import dtos.requests.CreateClassRequest;
+import dtos.responses.ClassResponse;
 
 public class ClassController {
 

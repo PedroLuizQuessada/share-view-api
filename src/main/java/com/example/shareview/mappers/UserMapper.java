@@ -1,8 +1,8 @@
 package com.example.shareview.mappers;
 
-import com.example.shareview.dtos.UserDto;
-import com.example.shareview.dtos.responses.UserResponse;
 import com.example.shareview.entities.User;
+import dtos.UserDto;
+import dtos.responses.UserResponse;
 
 public class UserMapper {
 

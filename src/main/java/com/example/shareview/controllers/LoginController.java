@@ -1,11 +1,11 @@
 package com.example.shareview.controllers;
 
 import com.example.shareview.datasources.UserDataSource;
-import com.example.shareview.dtos.responses.LoginResponse;
 import com.example.shareview.entities.User;
 import com.example.shareview.gateways.UserGateway;
 import com.example.shareview.mappers.LoginMapper;
 import com.example.shareview.usecases.LoginUseCase;
+import dtos.responses.LoginResponse;
 
 public class LoginController {
 

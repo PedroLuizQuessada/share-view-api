@@ -2,7 +2,7 @@ package com.example.shareview.infrastructure.input.api.services;
 
 import com.example.shareview.controllers.LoginController;
 import com.example.shareview.datasources.UserDataSource;
-import com.example.shareview.dtos.responses.LoginResponse;
+import dtos.responses.LoginResponse;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

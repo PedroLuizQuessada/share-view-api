@@ -1,13 +1,13 @@
 package com.example.shareview.infrastructure.persistence.jpa.repos;
 
 import com.example.shareview.datasources.ClassDataSource;
-import com.example.shareview.dtos.ClassDto;
-import com.example.shareview.dtos.CourseDto;
-import com.example.shareview.dtos.UserDto;
 import com.example.shareview.infrastructure.exceptions.ClassNotFoundJpaException;
 import com.example.shareview.infrastructure.persistence.jpa.mappers.ClassJpaDtoMapper;
 import com.example.shareview.infrastructure.persistence.jpa.mappers.UserJpaDtoMapper;
 import com.example.shareview.infrastructure.persistence.jpa.models.ClassJpa;
+import dtos.ClassDto;
+import dtos.CourseDto;
+import dtos.UserDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;

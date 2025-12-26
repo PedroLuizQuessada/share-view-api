@@ -1,9 +1,9 @@
 package com.example.shareview.infrastructure.persistence.jpa.repos;
 
 import com.example.shareview.datasources.CourseDataSource;
-import com.example.shareview.dtos.CourseDto;
 import com.example.shareview.infrastructure.persistence.jpa.mappers.CourseJpaDtoMapper;
 import com.example.shareview.infrastructure.persistence.jpa.models.CourseJpa;
+import dtos.CourseDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;

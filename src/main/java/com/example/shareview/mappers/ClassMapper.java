@@ -1,9 +1,9 @@
 package com.example.shareview.mappers;
 
-import com.example.shareview.dtos.ClassDto;
-import com.example.shareview.dtos.responses.ClassResponse;
 import com.example.shareview.entities.Class;
 import com.example.shareview.entities.User;
+import dtos.ClassDto;
+import dtos.responses.ClassResponse;
 
 import java.util.Objects;
 

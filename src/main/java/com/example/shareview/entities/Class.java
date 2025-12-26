@@ -1,7 +1,7 @@
 package com.example.shareview.entities;
 
-import com.example.shareview.enums.UserType;
 import com.example.shareview.exceptions.BadArgumentException;
+import enums.UserType;
 import lombok.Getter;
 
 import java.util.ArrayList;

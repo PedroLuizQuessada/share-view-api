@@ -1,8 +1,8 @@
 package com.example.shareview.datasources;
 
-import com.example.shareview.dtos.ClassDto;
-import com.example.shareview.dtos.CourseDto;
-import com.example.shareview.dtos.UserDto;
+import dtos.ClassDto;
+import dtos.CourseDto;
+import dtos.UserDto;
 
 import java.util.List;
 import java.util.Optional;

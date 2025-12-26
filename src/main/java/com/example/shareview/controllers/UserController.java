@@ -3,14 +3,17 @@ package com.example.shareview.controllers;
 import com.example.shareview.datasources.ClassDataSource;
 import com.example.shareview.datasources.TokenDataSource;
 import com.example.shareview.datasources.UserDataSource;
-import com.example.shareview.dtos.requests.*;
-import com.example.shareview.dtos.responses.UserResponse;
 import com.example.shareview.entities.User;
 import com.example.shareview.gateways.ClassGateway;
 import com.example.shareview.gateways.TokenGateway;
 import com.example.shareview.gateways.UserGateway;
 import com.example.shareview.mappers.UserMapper;
 import com.example.shareview.usecases.*;
+import dtos.requests.CreateStudentUserRequest;
+import dtos.requests.CreateUserRequest;
+import dtos.requests.UpdateUserEmailRequest;
+import dtos.requests.UpdateUserPasswordRequest;
+import dtos.responses.UserResponse;
 
 public class UserController {
 

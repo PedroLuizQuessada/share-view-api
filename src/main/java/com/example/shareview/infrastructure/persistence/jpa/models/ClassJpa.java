@@ -1,7 +1,7 @@
 package com.example.shareview.infrastructure.persistence.jpa.models;
 
-import com.example.shareview.enums.UserType;
 import com.example.shareview.infrastructure.exceptions.BadJpaArgumentException;
+import enums.UserType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

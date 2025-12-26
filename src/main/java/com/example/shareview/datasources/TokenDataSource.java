@@ -1,6 +1,6 @@
 package com.example.shareview.datasources;
 
-import com.example.shareview.enums.UserType;
+import enums.UserType;
 
 public interface TokenDataSource {
     String generateToken(UserType userType, String email);

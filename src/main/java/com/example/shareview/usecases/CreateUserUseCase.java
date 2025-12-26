@@ -1,9 +1,9 @@
 package com.example.shareview.usecases;
 
-import com.example.shareview.dtos.requests.CreateUserRequest;
 import com.example.shareview.entities.User;
 import com.example.shareview.gateways.UserGateway;
 import com.example.shareview.mappers.UserMapper;
+import dtos.requests.CreateUserRequest;
 
 public class CreateUserUseCase {
     private final UserGateway userGateway;

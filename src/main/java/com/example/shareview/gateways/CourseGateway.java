@@ -1,10 +1,10 @@
 package com.example.shareview.gateways;
 
 import com.example.shareview.datasources.CourseDataSource;
-import com.example.shareview.dtos.CourseDto;
 import com.example.shareview.entities.Course;
 import com.example.shareview.exceptions.CourseNotFoundException;
 import com.example.shareview.mappers.CourseMapper;
+import dtos.CourseDto;
 
 import java.util.Optional;
 

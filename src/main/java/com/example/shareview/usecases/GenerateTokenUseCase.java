@@ -1,8 +1,8 @@
 package com.example.shareview.usecases;
 
-import com.example.shareview.enums.UserType;
 import com.example.shareview.exceptions.BadArgumentException;
 import com.example.shareview.gateways.TokenGateway;
+import enums.UserType;
 
 import java.util.Objects;
 

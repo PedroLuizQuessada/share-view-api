@@ -1,8 +1,8 @@
 package com.example.shareview.mappers;
 
-import com.example.shareview.dtos.CourseDto;
-import com.example.shareview.dtos.responses.CourseResponse;
 import com.example.shareview.entities.Course;
+import dtos.CourseDto;
+import dtos.responses.CourseResponse;
 
 public class CourseMapper {
 

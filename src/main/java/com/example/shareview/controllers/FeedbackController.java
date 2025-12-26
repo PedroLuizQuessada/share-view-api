@@ -4,8 +4,6 @@ import com.example.shareview.datasources.ClassDataSource;
 import com.example.shareview.datasources.FeedbackDataSource;
 import com.example.shareview.datasources.TokenDataSource;
 import com.example.shareview.datasources.UserDataSource;
-import com.example.shareview.dtos.requests.CreateFeedbackRequest;
-import com.example.shareview.dtos.responses.FeedbackResponse;
 import com.example.shareview.entities.Feedback;
 import com.example.shareview.gateways.ClassGateway;
 import com.example.shareview.gateways.FeedbackGateway;
@@ -13,6 +11,8 @@ import com.example.shareview.gateways.TokenGateway;
 import com.example.shareview.gateways.UserGateway;
 import com.example.shareview.mappers.FeedbackMapper;
 import com.example.shareview.usecases.CreateFeedbackUseCase;
+import dtos.requests.CreateFeedbackRequest;
+import dtos.responses.FeedbackResponse;
 
 public class FeedbackController {
 
