@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -32,7 +33,10 @@ public class FeedbackJpa {
     @Column
     private String description;
 
-    public FeedbackJpa(Long id, UserJpa studentJpa, ClassJpa classJpa, Integer rating, String description) {
+    @Column(name = "evaluation_date", nullable = false)
+    private Date evaluationDate;
+
+    public FeedbackJpa(Long id, UserJpa studentJpa, ClassJpa classJpa, Integer rating, String description, Date evaluationDate) {
         String message = "";
 
         try {
@@ -58,6 +62,13 @@ public class FeedbackJpa {
 
         try {
             validateDescription(description);
+        }
+        catch (RuntimeException e) {
+            message = message + " " + e.getMessage();
+        }
+
+        try {
+            validateEvaluationDate(evaluationDate);
         }
         catch (RuntimeException e) {
             message = message + " " + e.getMessage();
@@ -91,5 +102,10 @@ public class FeedbackJpa {
     private void validateDescription(String description) {
         if (!Objects.isNull(description) && description.length() > 255)
             throw new BadJpaArgumentException("A descrição do feedback deve possuir até 255 caracteres para ser armazenado no banco de dados.");
+    }
+
+    private void validateEvaluationDate(Date evaluationDate) {
+        if (Objects.isNull(evaluationDate))
+            throw new BadJpaArgumentException("O feedback deve possuir uma data de avaliação para ser armazenado no banco de dados.");
     }
 }

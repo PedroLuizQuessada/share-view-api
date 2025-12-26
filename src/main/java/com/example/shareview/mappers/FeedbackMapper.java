@@ -15,7 +15,7 @@ public class FeedbackMapper {
                 feedback.getId(),
                 Objects.isNull(feedback.getStudent()) ? null : UserMapper.toDto(feedback.getStudent()),
                 Objects.isNull(feedback.getClazz()) ? null : ClassMapper.toDto(feedback.getClazz()),
-                feedback.getRating(), feedback.getDescription());
+                feedback.getRating(), feedback.getDescription(), feedback.getEvaluationDate());
     }
 
     public static Feedback toEntity(FeedbackDto feedbackDto) {

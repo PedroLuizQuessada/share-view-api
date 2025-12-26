@@ -3,6 +3,8 @@ package com.example.shareview.entities;
 import com.example.shareview.exceptions.BadArgumentException;
 import lombok.Getter;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 @Getter
@@ -12,6 +14,7 @@ public class Feedback {
     private final Class clazz;
     private final Integer rating;
     private final String description;
+    private final Date evaluationDate;
 
     public Feedback(Long id, User student, Class clazz, Integer rating, String description) {
         String message = "";
@@ -45,6 +48,7 @@ public class Feedback {
         this.clazz = clazz;
         this.rating = rating;
         this.description = description;
+        this.evaluationDate = Date.from(Instant.now());
     }
 
     private void validateStudent(User student) {
