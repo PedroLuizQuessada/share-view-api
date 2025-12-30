@@ -42,7 +42,7 @@ public class UserRepositoryJpaImpl implements UserDataSource {
         query.setParameter("email", email);
         try {
             UserJpa userJpa = (UserJpa) query.getSingleResult();
-            return Optional.ofNullable(UserJpaDtoMapper.toUserDto(userJpa));
+            return Optional.of(UserJpaDtoMapper.toUserDto(userJpa));
         }
         catch (NoResultException e) {
             return Optional.empty();
