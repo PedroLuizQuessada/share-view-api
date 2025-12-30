@@ -2,16 +2,15 @@ package com.example.shareview.infrastructure.persistence.jpa.repos;
 
 import com.example.shareview.datasources.ClassDataSource;
 import com.example.shareview.infrastructure.exceptions.ClassNotFoundJpaException;
-import com.example.shareview.infrastructure.persistence.jpa.mappers.ClassJpaDtoMapper;
-import com.example.shareview.infrastructure.persistence.jpa.mappers.UserJpaDtoMapper;
-import com.example.shareview.infrastructure.persistence.jpa.models.ClassJpa;
 import dtos.ClassDto;
 import dtos.CourseDto;
 import dtos.UserDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import org.springframework.beans.factory.annotation.Autowired;
+import mappers.ClassJpaDtoMapper;
+import mappers.UserJpaDtoMapper;
+import models.ClassJpa;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,24 +26,18 @@ public class ClassRepositoryJpaImpl implements ClassDataSource {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
-    private ClassJpaDtoMapper classJpaDtoMapper;
-
-    @Autowired
-    private UserJpaDtoMapper userJpaDtoMapper;
-
     @Override
     @Transactional
     public ClassDto createClass(ClassDto classDto) {
-        ClassJpa classJpa = classJpaDtoMapper.toClassJpa(classDto);
+        ClassJpa classJpa = ClassJpaDtoMapper.toClassJpa(classDto);
         classJpa = entityManager.merge(classJpa);
-        return classJpaDtoMapper.toClassDto(classJpa);
+        return ClassJpaDtoMapper.toClassDto(classJpa);
     }
 
     @Override
     public Optional<ClassDto> findClassById(Long id) {
         Optional<ClassJpa> optionalClassJpa = Optional.ofNullable(entityManager.find(ClassJpa.class, id));
-        return optionalClassJpa.map(classJpaDtoMapper::toClassDto);
+        return optionalClassJpa.map(ClassJpaDtoMapper::toClassDto);
     }
 
     @Override
@@ -52,7 +45,7 @@ public class ClassRepositoryJpaImpl implements ClassDataSource {
     public void addTeacher(ClassDto classDto, UserDto userDto) {
         ClassJpa classJpa = entityManager.find(ClassJpa.class, classDto.id());
         if (classJpa != null) {
-            classJpa.addTeacher(userJpaDtoMapper.toUserJpa(userDto));
+            classJpa.addTeacher(UserJpaDtoMapper.toUserJpa(userDto));
             entityManager.merge(classJpa);
         }
         else {
@@ -65,7 +58,7 @@ public class ClassRepositoryJpaImpl implements ClassDataSource {
     public void addStudent(ClassDto classDto, UserDto userDto) {
         ClassJpa classJpa = entityManager.find(ClassJpa.class, classDto.id());
         if (classJpa != null) {
-            classJpa.addStudent(userJpaDtoMapper.toUserJpa(userDto));
+            classJpa.addStudent(UserJpaDtoMapper.toUserJpa(userDto));
             entityManager.merge(classJpa);
         }
         else {
@@ -78,7 +71,7 @@ public class ClassRepositoryJpaImpl implements ClassDataSource {
     public void removeTeacher(ClassDto classDto, UserDto userDto) {
         ClassJpa classJpa = entityManager.find(ClassJpa.class, classDto.id());
         if (classJpa != null) {
-            classJpa.removeTeacher(userJpaDtoMapper.toUserJpa(userDto));
+            classJpa.removeTeacher(UserJpaDtoMapper.toUserJpa(userDto));
             entityManager.merge(classJpa);
         }
         else {
@@ -91,7 +84,7 @@ public class ClassRepositoryJpaImpl implements ClassDataSource {
     public void removeStudent(ClassDto classDto, UserDto userDto) {
         ClassJpa classJpa = entityManager.find(ClassJpa.class, classDto.id());
         if (classJpa != null) {
-            classJpa.removeStudent(userJpaDtoMapper.toUserJpa(userDto));
+            classJpa.removeStudent(UserJpaDtoMapper.toUserJpa(userDto));
             entityManager.merge(classJpa);
         }
         else {
@@ -106,7 +99,7 @@ public class ClassRepositoryJpaImpl implements ClassDataSource {
                 "WHERE student.id = :studentId", ClassJpa.class);
         query.setParameter("studentId", userDto.id());
         List<ClassJpa> classJpaList = query.getResultList();
-        return classJpaList.stream().map(classJpaDtoMapper::toClassDto).collect(Collectors.toList());
+        return classJpaList.stream().map(ClassJpaDtoMapper::toClassDto).collect(Collectors.toList());
     }
 
     @Override
@@ -116,7 +109,7 @@ public class ClassRepositoryJpaImpl implements ClassDataSource {
                                                     "WHERE teacher.id = :teacherId", ClassJpa.class);
         query.setParameter("teacherId", userDto.id());
         List<ClassJpa> classJpaList = query.getResultList();
-        return classJpaList.stream().map(classJpaDtoMapper::toClassDto).collect(Collectors.toList());
+        return classJpaList.stream().map(ClassJpaDtoMapper::toClassDto).collect(Collectors.toList());
     }
 
     @Override

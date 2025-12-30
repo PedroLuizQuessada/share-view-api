@@ -1,4 +1,4 @@
-package com.example.shareview.infrastructure.configs;
+package com.example.shareview.infrastructure.input.api.configs;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;

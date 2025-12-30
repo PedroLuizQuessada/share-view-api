@@ -1,4 +1,4 @@
-package com.example.shareview.infrastructure.configs;
+package com.example.shareview.infrastructure.input.api.configs;
 
 import com.example.shareview.infrastructure.input.api.security.CustomAccessDeniedHandler;
 import com.example.shareview.infrastructure.input.api.security.CustomAuthenticationEntryPoint;

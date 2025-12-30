@@ -1,14 +1,13 @@
 package com.example.shareview.infrastructure.persistence.jpa.repos;
 
 import com.example.shareview.datasources.UserDataSource;
-import com.example.shareview.infrastructure.persistence.jpa.mappers.UserJpaDtoMapper;
-import com.example.shareview.infrastructure.persistence.jpa.models.UserJpa;
 import dtos.UserDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import org.springframework.beans.factory.annotation.Autowired;
+import mappers.UserJpaDtoMapper;
+import models.UserJpa;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +21,6 @@ public class UserRepositoryJpaImpl implements UserDataSource {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
-    private UserJpaDtoMapper userJpaDtoMapper;
-
     @Override
     public Long countByEmail(String email) {
         Query query = entityManager.createQuery("SELECT count(*) FROM UserJpa user WHERE user.email = :email");
@@ -35,9 +31,9 @@ public class UserRepositoryJpaImpl implements UserDataSource {
     @Override
     @Transactional
     public UserDto createUser(UserDto userDto) {
-        UserJpa userJpa = userJpaDtoMapper.toUserJpa(userDto);
+        UserJpa userJpa = UserJpaDtoMapper.toUserJpa(userDto);
         userJpa = entityManager.merge(userJpa);
-        return userJpaDtoMapper.toUserDto(userJpa);
+        return UserJpaDtoMapper.toUserDto(userJpa);
     }
 
     @Override
@@ -46,7 +42,7 @@ public class UserRepositoryJpaImpl implements UserDataSource {
         query.setParameter("email", email);
         try {
             UserJpa userJpa = (UserJpa) query.getSingleResult();
-            return Optional.ofNullable(userJpaDtoMapper.toUserDto(userJpa));
+            return Optional.ofNullable(UserJpaDtoMapper.toUserDto(userJpa));
         }
         catch (NoResultException e) {
             return Optional.empty();
@@ -56,7 +52,7 @@ public class UserRepositoryJpaImpl implements UserDataSource {
     @Override
     public Optional<UserDto> findUserById(Long id) {
         Optional<UserJpa> optionalUserJpa = Optional.ofNullable(entityManager.find(UserJpa.class, id));
-        return optionalUserJpa.map(userJpaDtoMapper::toUserDto);
+        return optionalUserJpa.map(UserJpaDtoMapper::toUserDto);
     }
 
     @Override

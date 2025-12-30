@@ -1,4 +1,4 @@
-package com.example.shareview.infrastructure.token.jwt;
+package com.example.shareview.infrastructure.token.jwt.services;
 
 import com.example.shareview.datasources.TokenDataSource;
 import com.example.shareview.infrastructure.exceptions.InvalidJwtException;

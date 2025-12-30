@@ -1,13 +1,12 @@
 package com.example.shareview.infrastructure.persistence.jpa.repos;
 
 import com.example.shareview.datasources.CourseDataSource;
-import com.example.shareview.infrastructure.persistence.jpa.mappers.CourseJpaDtoMapper;
-import com.example.shareview.infrastructure.persistence.jpa.models.CourseJpa;
 import dtos.CourseDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import org.springframework.beans.factory.annotation.Autowired;
+import mappers.CourseJpaDtoMapper;
+import models.CourseJpa;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,9 +20,6 @@ public class CourseRepositoryJpaImpl implements CourseDataSource {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
-    private CourseJpaDtoMapper courseJpaDtoMapper;
-
     @Override
     public Long countByName(String name) {
         Query query = entityManager.createQuery("SELECT count(*) FROM CourseJpa course WHERE course.name = :name");
@@ -34,21 +30,21 @@ public class CourseRepositoryJpaImpl implements CourseDataSource {
     @Override
     @Transactional
     public CourseDto createCourse(CourseDto course) {
-        CourseJpa courseJpa = courseJpaDtoMapper.toCourseJpa(course);
+        CourseJpa courseJpa = CourseJpaDtoMapper.toCourseJpa(course);
         courseJpa = entityManager.merge(courseJpa);
-        return courseJpaDtoMapper.toCourseDto(courseJpa);
+        return CourseJpaDtoMapper.toCourseDto(courseJpa);
     }
 
     @Override
     public Optional<CourseDto> findCourseById(Long id) {
         Optional<CourseJpa> optionalCourseJpa = Optional.ofNullable(entityManager.find(CourseJpa.class, id));
-        return optionalCourseJpa.map(courseJpaDtoMapper::toCourseDto);
+        return optionalCourseJpa.map(CourseJpaDtoMapper::toCourseDto);
     }
 
     @Override
     @Transactional
     public void updateCourse(CourseDto courseDto) {
-        CourseJpa courseJpa = courseJpaDtoMapper.toCourseJpa(courseDto);
+        CourseJpa courseJpa = CourseJpaDtoMapper.toCourseJpa(courseDto);
         entityManager.merge(courseJpa);
     }
 

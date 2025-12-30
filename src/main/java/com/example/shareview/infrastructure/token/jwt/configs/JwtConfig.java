@@ -1,7 +1,7 @@
-package com.example.shareview.infrastructure.configs;
+package com.example.shareview.infrastructure.token.jwt.configs;
 
 import com.example.shareview.datasources.TokenDataSource;
-import com.example.shareview.infrastructure.token.jwt.TokenServiceJwtImpl;
+import com.example.shareview.infrastructure.token.jwt.services.TokenServiceJwtImpl;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;

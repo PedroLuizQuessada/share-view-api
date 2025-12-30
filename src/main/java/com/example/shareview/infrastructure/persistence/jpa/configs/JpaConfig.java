@@ -1,4 +1,4 @@
-package com.example.shareview.infrastructure.configs;
+package com.example.shareview.infrastructure.persistence.jpa.configs;
 
 import com.example.shareview.datasources.ClassDataSource;
 import com.example.shareview.datasources.CourseDataSource;
