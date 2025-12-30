@@ -34,6 +34,6 @@ public class CreateFeedbackUseCase {
             throw new BadRequestException("Aluno só podem criar feedbacks para classes das quais fizeram parte.");
 
         Feedback feedback = new Feedback(null, user, clazz, createFeedbackRequest.rating(), createFeedbackRequest.description());
-        return feedbackGateway.createUser(FeedbackMapper.toDto(feedback));
+        return feedbackGateway.createFeedback(FeedbackMapper.toDto(feedback));
     }
 }

@@ -13,7 +13,7 @@ public class FeedbackGateway {
         this.feedbackDataSource = feedbackDataSource;
     }
 
-    public Feedback createUser(FeedbackDto createFeedbackDto) {
+    public Feedback createFeedback(FeedbackDto createFeedbackDto) {
         FeedbackDto feedbackDto = feedbackDataSource.createFeedback(createFeedbackDto);
         return FeedbackMapper.toEntity(feedbackDto);
     }
