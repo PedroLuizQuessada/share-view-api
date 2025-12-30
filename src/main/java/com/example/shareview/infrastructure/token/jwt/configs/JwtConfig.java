@@ -1,7 +1,5 @@
 package com.example.shareview.infrastructure.token.jwt.configs;
 
-import com.example.shareview.datasources.TokenDataSource;
-import com.example.shareview.infrastructure.token.jwt.services.TokenServiceJwtImpl;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
@@ -42,7 +40,7 @@ public class JwtConfig {
     }
 
     @Bean
-    public JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter() {
+    JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter() {
         JwtGrantedAuthoritiesConverter converter = new JwtGrantedAuthoritiesConverter();
         converter.setAuthoritiesClaimName("authorities");
         converter.setAuthorityPrefix("");
@@ -50,15 +48,10 @@ public class JwtConfig {
     }
 
     @Bean
-    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
         converter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter());
         return converter;
-    }
-
-    @Bean
-    public TokenDataSource tokenDataSource() {
-        return new TokenServiceJwtImpl();
     }
 
 }

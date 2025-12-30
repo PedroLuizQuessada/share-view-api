@@ -1,13 +1,5 @@
 package com.example.shareview.infrastructure.persistence.jpa.configs;
 
-import com.example.shareview.datasources.ClassDataSource;
-import com.example.shareview.datasources.CourseDataSource;
-import com.example.shareview.datasources.FeedbackDataSource;
-import com.example.shareview.datasources.UserDataSource;
-import com.example.shareview.infrastructure.persistence.jpa.repos.ClassRepositoryJpaImpl;
-import com.example.shareview.infrastructure.persistence.jpa.repos.CourseRepositoryJpaImpl;
-import com.example.shareview.infrastructure.persistence.jpa.repos.FeedbackRepositoryJpaImpl;
-import com.example.shareview.infrastructure.persistence.jpa.repos.UserRepositoryJpaImpl;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -51,7 +43,7 @@ public class JpaConfig {
     private String formatSql;
 
     @Bean
-    public DataSource dataSource() {
+    DataSource dataSource() {
         return DataSourceBuilder.create()
                 .driverClassName(driverClassName)
                 .url(dbUrl)
@@ -61,15 +53,15 @@ public class JpaConfig {
     }
 
     @Bean
-    public JpaVendorAdapter jpaVendorAdapter() {
+    JpaVendorAdapter jpaVendorAdapter() {
         return new HibernateJpaVendorAdapter();
     }
 
     @Bean
-    public EntityManagerFactory entityManagerFactory() {
+    EntityManagerFactory entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource());
-        entityManagerFactory.setPackagesToScan("com.example.shareview");
+        entityManagerFactory.setPackagesToScan("models");
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter());
         entityManagerFactory.setJpaProperties(additionalProperties());
         entityManagerFactory.afterPropertiesSet();
@@ -77,38 +69,18 @@ public class JpaConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager() {
+    PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory());
         return transactionManager;
     }
 
     @Bean
-    public Properties additionalProperties() {
+    Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", ddlAuto);
         properties.setProperty("hibernate.show_sql", showSql);
         properties.setProperty("hibernate.format_sql", formatSql);
         return properties;
-    }
-
-    @Bean
-    public UserDataSource userDataSource() {
-        return new UserRepositoryJpaImpl();
-    }
-
-    @Bean
-    public CourseDataSource courseDataSource() {
-        return new CourseRepositoryJpaImpl();
-    }
-
-    @Bean
-    public ClassDataSource classDataSource() {
-        return new ClassRepositoryJpaImpl();
-    }
-
-    @Bean
-    public FeedbackDataSource feedbackDataSource() {
-        return new FeedbackRepositoryJpaImpl();
     }
 }
