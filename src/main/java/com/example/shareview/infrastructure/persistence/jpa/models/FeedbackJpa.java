@@ -82,6 +82,7 @@ public class FeedbackJpa {
         this.classJpa = classJpa;
         this.rating = rating;
         this.description = description;
+        this.evaluationDate = evaluationDate;
     }
 
     private void validateStudentJpa(UserJpa studentJpa) {
