@@ -85,10 +85,9 @@ public class Class {
         if (Objects.isNull(this.teachers))
             this.teachers = new ArrayList<>();
 
-        if (this.teachers.stream().noneMatch(teacher -> teacher.getId().equals(removeTeacher.getId())))
+        boolean removed = this.teachers.removeIf(teacher -> teacher.getId().equals(removeTeacher.getId()));
+        if (!removed)
             throw new BadArgumentException("Professor não consta na classe.");
-
-        this.teachers.remove(removeTeacher);
     }
 
     public List<User> getStudentsCopy() {
@@ -116,10 +115,9 @@ public class Class {
         if (Objects.isNull(this.students))
             this.students = new ArrayList<>();
 
-        if (this.students.stream().noneMatch(student -> student.getId().equals(removeStudent.getId())))
+        boolean removed = this.students.removeIf(student -> student.getId().equals(removeStudent.getId()));
+        if (!removed)
             throw new BadArgumentException("Aluno não consta na classe.");
-
-        this.students.remove(removeStudent);
     }
 
     private void validateCourse(Course course) {
