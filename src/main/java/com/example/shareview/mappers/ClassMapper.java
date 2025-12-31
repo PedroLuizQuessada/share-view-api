@@ -6,6 +6,7 @@ import dtos.ClassDto;
 import dtos.responses.ClassResponse;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ClassMapper {
 
@@ -22,8 +23,12 @@ public class ClassMapper {
     public static Class toEntity(ClassDto classDto) {
         return new Class(classDto.id(),
                 Objects.isNull(classDto.course()) ? null : CourseMapper.toEntity(classDto.course()),
-                Objects.isNull(classDto.teachers()) ? null : classDto.teachers().stream().map((teacher) -> UserMapper.toEntity(teacher, false)).toList(),
-                Objects.isNull(classDto.students()) ? null : classDto.students().stream().map((student) -> UserMapper.toEntity(student, false)).toList(),
+                Objects.isNull(classDto.teachers()) ? null :
+                        classDto.teachers()
+                                .stream()
+                                .map(teacher -> UserMapper.toEntity(teacher, false))
+                                .collect(Collectors.toList()),
+                Objects.isNull(classDto.students()) ? null : classDto.students().stream().map((student) -> UserMapper.toEntity(student, false)).toList(), //TODO trocar todos os toList
                 classDto.startDate());
     }
 

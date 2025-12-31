@@ -61,6 +61,9 @@ public class Class {
     }
 
     public List<User> getTeachersCopy() {
+        if (Objects.isNull(teachers))
+            return new ArrayList<>();
+
         return teachers.stream()
                 .map(User::new)
                 .collect(java.util.stream.Collectors.toList());
@@ -79,6 +82,8 @@ public class Class {
 
     public void removeTeacher(User removeTeacher) {
         validateTeacher(removeTeacher);
+        if (Objects.isNull(this.teachers))
+            this.teachers = new ArrayList<>();
 
         if (this.teachers.stream().noneMatch(teacher -> teacher.getId().equals(removeTeacher.getId())))
             throw new BadArgumentException("Professor não consta na classe.");
@@ -87,6 +92,9 @@ public class Class {
     }
 
     public List<User> getStudentsCopy() {
+        if (Objects.isNull(students))
+            return new ArrayList<>();
+
         return students.stream()
                 .map(User::new)
                 .collect(java.util.stream.Collectors.toList());
@@ -105,6 +113,8 @@ public class Class {
 
     public void removeStudent(User removeStudent) {
         validateStudent(removeStudent);
+        if (Objects.isNull(this.students))
+            this.students = new ArrayList<>();
 
         if (this.students.stream().noneMatch(student -> student.getId().equals(removeStudent.getId())))
             throw new BadArgumentException("Aluno não consta na classe.");
@@ -124,7 +134,7 @@ public class Class {
     }
 
     private void validateTeacher(User teacher) {
-        if (teacher.getUserType().equals(UserType.TEACHER))
+        if (!teacher.getUserType().equals(UserType.TEACHER))
             throw new BadArgumentException(String.format("Professor %s inválido.", teacher.getEmail()));
     }
 
@@ -135,7 +145,7 @@ public class Class {
     }
 
     private void validateStudent(User student) {
-        if (student.getUserType().equals(UserType.STUDENT))
+        if (!student.getUserType().equals(UserType.STUDENT))
             throw new BadArgumentException(String.format("Aluno %s inválido.", student.getEmail()));
     }
 

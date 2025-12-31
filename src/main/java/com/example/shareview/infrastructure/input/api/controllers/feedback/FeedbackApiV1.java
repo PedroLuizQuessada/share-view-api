@@ -1,10 +1,7 @@
 package com.example.shareview.infrastructure.input.api.controllers.feedback;
 
 import com.example.shareview.controllers.FeedbackController;
-import com.example.shareview.datasources.ClassDataSource;
-import com.example.shareview.datasources.FeedbackDataSource;
-import com.example.shareview.datasources.TokenDataSource;
-import com.example.shareview.datasources.UserDataSource;
+import com.example.shareview.datasources.*;
 import dtos.requests.CreateFeedbackRequest;
 import dtos.responses.FeedbackResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,8 +30,9 @@ public class FeedbackApiV1 {
     private final FeedbackController feedbackController;
 
     public FeedbackApiV1(TokenDataSource tokenDataSource, UserDataSource userDataSource, ClassDataSource classDataSource,
-                         FeedbackDataSource feedbackDataSource) {
-        this.feedbackController = new FeedbackController(tokenDataSource, userDataSource, classDataSource, feedbackDataSource);
+                         FeedbackDataSource feedbackDataSource, FeedbackNotificationDataSource feedbackNotificationDataSource) {
+        this.feedbackController = new FeedbackController(tokenDataSource, userDataSource, classDataSource, feedbackDataSource,
+                feedbackNotificationDataSource);
     }
 
     @Operation(summary = "Cria um feedback",

@@ -15,6 +15,10 @@ public class TokenGateway {
         return tokenDataSource.generateToken(userType, email);
     }
 
+    public String generateServiceToken() {
+        return tokenDataSource.generateServiceToken();
+    }
+
     public String getEmail(String token) {
         return tokenDataSource.getEmail(token);
     }

@@ -10,18 +10,15 @@ import dtos.requests.CreateClassRequest;
 public class CreateClassUseCase {
     private final CourseGateway courseGateway;
     private final ClassGateway classGateway;
-    private final CheckCourseNameAvailability checkCourseNameAvailability;
 
     public CreateClassUseCase(CourseGateway courseGateway, ClassGateway classGateway) {
         this.courseGateway = courseGateway;
         this.classGateway = classGateway;
-        this.checkCourseNameAvailability = new CheckCourseNameAvailability(courseGateway);
     }
 
     public Class execute(CreateClassRequest createClassRequest) {
         Course course = courseGateway.findCourseById(createClassRequest.courseId());
         Class clazz = new Class(null, course, null, null, createClassRequest.startDate());
-        checkCourseNameAvailability.execute(clazz.getCourse().getName());
         return classGateway.createClass(ClassMapper.toDto(clazz));
     }
 }

@@ -44,7 +44,7 @@ public class ApiConfig {
     private CustomAccessDeniedHandler customAccessDeniedHandler;
 
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) {
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.httpBasic(Customizer.withDefaults());
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->

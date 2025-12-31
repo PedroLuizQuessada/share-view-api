@@ -1,14 +1,8 @@
 package com.example.shareview.controllers;
 
-import com.example.shareview.datasources.ClassDataSource;
-import com.example.shareview.datasources.FeedbackDataSource;
-import com.example.shareview.datasources.TokenDataSource;
-import com.example.shareview.datasources.UserDataSource;
+import com.example.shareview.datasources.*;
 import com.example.shareview.entities.Feedback;
-import com.example.shareview.gateways.ClassGateway;
-import com.example.shareview.gateways.FeedbackGateway;
-import com.example.shareview.gateways.TokenGateway;
-import com.example.shareview.gateways.UserGateway;
+import com.example.shareview.gateways.*;
 import com.example.shareview.mappers.FeedbackMapper;
 import com.example.shareview.usecases.CreateFeedbackUseCase;
 import dtos.requests.CreateFeedbackRequest;
@@ -20,12 +14,14 @@ public class FeedbackController {
     private final UserDataSource userDataSource;
     private final ClassDataSource classDataSource;
     private final FeedbackDataSource feedbackDataSource;
+    private final FeedbackNotificationDataSource feedbackNotificationDataSource;
 
-    public FeedbackController(TokenDataSource tokenDataSource, UserDataSource userDataSource, ClassDataSource classDataSource, FeedbackDataSource feedbackDataSource) {
+    public FeedbackController(TokenDataSource tokenDataSource, UserDataSource userDataSource, ClassDataSource classDataSource, FeedbackDataSource feedbackDataSource, FeedbackNotificationDataSource feedbackNotificationDataSource) {
         this.tokenDataSource = tokenDataSource;
         this.userDataSource = userDataSource;
         this.classDataSource = classDataSource;
         this.feedbackDataSource = feedbackDataSource;
+        this.feedbackNotificationDataSource = feedbackNotificationDataSource;
     }
 
     public FeedbackResponse createFeedback(String token, CreateFeedbackRequest request) {
@@ -33,7 +29,8 @@ public class FeedbackController {
         UserGateway userGateway = new UserGateway(userDataSource);
         ClassGateway classGateway = new ClassGateway(classDataSource);
         FeedbackGateway feedbackGateway = new FeedbackGateway(feedbackDataSource);
-        CreateFeedbackUseCase useCase = new CreateFeedbackUseCase(tokenGateway, userGateway, classGateway, feedbackGateway);
+        FeedbackNotificationGateway feedbackNotificationGateway = new FeedbackNotificationGateway(feedbackNotificationDataSource);
+        CreateFeedbackUseCase useCase = new CreateFeedbackUseCase(tokenGateway, userGateway, classGateway, feedbackGateway, feedbackNotificationGateway);
         Feedback feedback = useCase.execute(token, request);
         return FeedbackMapper.toResponse(feedback);
     }

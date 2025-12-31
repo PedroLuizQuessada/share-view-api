@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.Collections;
 
 @Service
 @Profile("jwt")
@@ -37,6 +38,20 @@ public class TokenServiceJwtImpl implements TokenDataSource {
                 .expiresAt(now.plusSeconds(expirationTime))
                 .claim("authorities", userType)
                 .subject(email)
+                .build();
+
+        return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+    }
+
+    @Override
+    public String generateServiceToken() {
+        Instant now = Instant.now();
+
+        var claims = JwtClaimsSet.builder()
+                .issuer(applicationName)
+                .issuedAt(now)
+                .expiresAt(now.plusSeconds(expirationTime))
+                .audience(Collections.singletonList(applicationName))
                 .build();
 
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

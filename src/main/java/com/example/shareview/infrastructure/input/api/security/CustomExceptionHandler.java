@@ -2,6 +2,7 @@ package com.example.shareview.infrastructure.input.api.security;
 
 import com.example.shareview.exceptions.BadRequestException;
 import com.example.shareview.exceptions.NotFoundException;
+import com.example.shareview.infrastructure.exceptions.UnauthorizedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.*;
@@ -22,6 +23,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public ProblemDetail handleBadRequest(RuntimeException ex) {
         log.error(ex.getMessage(), ex);
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(value = { UnauthorizedException.class })
+    public ProblemDetail handleUnauthorized(RuntimeException ex) {
+        log.error(ex.getMessage(), ex);
+        return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, ex.getMessage());
     }
 
     @ExceptionHandler(value = { NotFoundException.class })

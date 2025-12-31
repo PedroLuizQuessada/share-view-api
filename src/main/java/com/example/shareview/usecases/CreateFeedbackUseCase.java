@@ -4,11 +4,9 @@ import com.example.shareview.entities.Class;
 import com.example.shareview.entities.Feedback;
 import com.example.shareview.entities.User;
 import com.example.shareview.exceptions.BadRequestException;
-import com.example.shareview.gateways.ClassGateway;
-import com.example.shareview.gateways.FeedbackGateway;
-import com.example.shareview.gateways.TokenGateway;
-import com.example.shareview.gateways.UserGateway;
+import com.example.shareview.gateways.*;
 import com.example.shareview.mappers.FeedbackMapper;
+import dtos.requests.CreateBadFeedbackNotificationRequest;
 import dtos.requests.CreateFeedbackRequest;
 
 public class CreateFeedbackUseCase {
@@ -17,12 +15,14 @@ public class CreateFeedbackUseCase {
     private final UserGateway userGateway;
     private final ClassGateway classGateway;
     private final FeedbackGateway feedbackGateway;
+    private final FeedbackNotificationGateway feedbackNotificationGateway;
 
-    public CreateFeedbackUseCase(TokenGateway tokenGateway, UserGateway userGateway, ClassGateway classGateway, FeedbackGateway feedbackGateway) {
+    public CreateFeedbackUseCase(TokenGateway tokenGateway, UserGateway userGateway, ClassGateway classGateway, FeedbackGateway feedbackGateway, FeedbackNotificationGateway feedbackNotificationGateway) {
         this.tokenGateway = tokenGateway;
         this.userGateway = userGateway;
         this.classGateway = classGateway;
         this.feedbackGateway = feedbackGateway;
+        this.feedbackNotificationGateway = feedbackNotificationGateway;
     }
 
     public Feedback execute(String token, CreateFeedbackRequest createFeedbackRequest) {
@@ -34,6 +34,16 @@ public class CreateFeedbackUseCase {
             throw new BadRequestException("Aluno só podem criar feedbacks para classes das quais fizeram parte.");
 
         Feedback feedback = new Feedback(null, user, clazz, createFeedbackRequest.rating(), createFeedbackRequest.description());
-        return feedbackGateway.createFeedback(FeedbackMapper.toDto(feedback));
+        feedback = feedbackGateway.createFeedback(FeedbackMapper.toDto(feedback));
+
+        if (feedback.getRating() <= 4) {
+            CreateBadFeedbackNotificationRequest createBadFeedbackNotificationRequest =
+                    new CreateBadFeedbackNotificationRequest(user.getEmail(), clazz.getCourse().getName(),
+                            createFeedbackRequest.rating(), createFeedbackRequest.description());
+            String serviceToken = tokenGateway.generateServiceToken();
+            feedbackNotificationGateway.sendBadFeedbackNotification(serviceToken, createBadFeedbackNotificationRequest);
+        }
+
+        return feedback;
     }
 }
