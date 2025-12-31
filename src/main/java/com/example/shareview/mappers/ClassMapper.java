@@ -15,8 +15,16 @@ public class ClassMapper {
     public static ClassDto toDto(Class clazz) {
         return new ClassDto(clazz.getId(),
                 Objects.isNull(clazz.getCourse()) ? null : CourseMapper.toDto(clazz.getCourse()),
-                Objects.isNull(clazz.getTeachersCopy()) ? null : clazz.getTeachersCopy().stream().map(UserMapper::toDto).toList(),
-                Objects.isNull(clazz.getStudentsCopy()) ? null : clazz.getStudentsCopy().stream().map(UserMapper::toDto).toList(),
+                Objects.isNull(clazz.getTeachersCopy()) ? null :
+                        clazz.getTeachersCopy()
+                                .stream()
+                                .map(UserMapper::toDto)
+                                .collect(Collectors.toList()),
+                Objects.isNull(clazz.getStudentsCopy()) ? null :
+                        clazz.getStudentsCopy()
+                                .stream()
+                                .map(UserMapper::toDto)
+                                .collect(Collectors.toList()),
                 clazz.getStartDate());
     }
 
@@ -28,14 +36,27 @@ public class ClassMapper {
                                 .stream()
                                 .map(teacher -> UserMapper.toEntity(teacher, false))
                                 .collect(Collectors.toList()),
-                Objects.isNull(classDto.students()) ? null : classDto.students().stream().map((student) -> UserMapper.toEntity(student, false)).toList(), //TODO trocar todos os toList
+                Objects.isNull(classDto.students()) ? null :
+                        classDto.students()
+                                .stream()
+                                .map((student) -> UserMapper.toEntity(student, false))
+                                .collect(Collectors.toList()),
                 classDto.startDate());
     }
 
     public static ClassResponse toResponse(Class clazz) {
-        return new ClassResponse(clazz.getId(), clazz.getCourse().getId(),
-                clazz.getTeachersCopy().stream().map(User::getId).toList(),
-                clazz.getStudentsCopy().stream().map(User::getId).toList(),
+        return new ClassResponse(clazz.getId(),
+                Objects.isNull(clazz.getCourse()) ? null : clazz.getCourse().getId(),
+                Objects.isNull(clazz.getTeachersCopy()) ? null :
+                        clazz.getTeachersCopy()
+                                .stream()
+                                .map(User::getId)
+                                .collect(Collectors.toList()),
+                Objects.isNull(clazz.getStudentsCopy()) ? null :
+                        clazz.getStudentsCopy()
+                                .stream()
+                                .map(User::getId)
+                                .collect(Collectors.toList()),
                 clazz.getStartDate());
     }
 }
