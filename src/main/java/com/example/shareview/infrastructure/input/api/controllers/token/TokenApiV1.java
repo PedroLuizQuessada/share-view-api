@@ -33,7 +33,7 @@ public class TokenApiV1 {
         this.tokenController = new TokenController(tokenDataSource);
     }
 
-    @Operation(summary = "Gera token de acesso",
+    @Operation(summary = "Gera token de acesso de cliente",
             description = "Requer autenticação",
             security = @SecurityRequirement(name = "basicAuth"))
     @ApiResponses({
